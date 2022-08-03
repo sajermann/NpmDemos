@@ -1,0 +1,6 @@
+.test {
+	filter: invert(1);
+	height: 1rem/* 16px */;
+	width: 1rem/* 16px */;
+	/* animation: spin 1s linear infinite; */
+}
