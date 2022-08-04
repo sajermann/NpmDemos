@@ -32,7 +32,7 @@ export default function Loading() {
 	}
 	insertCss();
 	return (
-		<div className="w-6 h-6 flex items-center justify-center overflow-hidden">
+		<div className={styles.container}>
 			<img
 				src={logoCirtcle}
 				// weight="bold"

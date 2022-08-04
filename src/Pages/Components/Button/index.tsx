@@ -1,10 +1,38 @@
 /* eslint-disable react/button-has-type */
+import { useEffect } from 'react';
 import Loading from '../Loading';
 import styles from './styles.module.css';
+import successSvg from './success.svg';
+import failedSvg from './failed.svg';
+import delay from '../../Home/delay';
+
+function Success() {
+	return (
+		<img src={successSvg} className={styles.successSvg} alt="success img" />
+	);
+}
+
+function Failed() {
+	return (
+		<img src={failedSvg} className={styles.successSvg} alt="success img" />
+	);
+}
+
+type PropsFeedBack = {
+	isLoading: boolean;
+	inSuccess?: {
+		success: boolean;
+		setSuccess: (data: boolean) => void;
+	};
+	inFailed?: {
+		failed: boolean;
+		setFailed: (data: boolean) => void;
+	};
+};
 
 interface Props extends React.HTMLProps<HTMLButtonElement> {
 	type: 'button' | 'reset' | 'submit';
-	isLoading?: boolean;
+	withFeedback?: PropsFeedBack;
 	variant?:
 		| 'Primary'
 		| 'Secondary'
@@ -14,7 +42,7 @@ interface Props extends React.HTMLProps<HTMLButtonElement> {
 		| 'Warning';
 }
 
-function Button({ type, isLoading, children, variant, ...props }: Props) {
+function Button({ type, withFeedback, children, variant, ...props }: Props) {
 	const { onClick } = props;
 	const VARIANT = {
 		Primary: styles.Primary,
@@ -105,6 +133,25 @@ function Button({ type, isLoading, children, variant, ...props }: Props) {
 		removeCss();
 	}
 
+	async function success() {
+		await delay(1000);
+		withFeedback?.inSuccess?.setSuccess(false);
+	}
+
+	async function failed() {
+		await delay(1000);
+		withFeedback?.inFailed?.setFailed(false);
+	}
+
+	useEffect(() => {
+		if (withFeedback?.inSuccess?.success) {
+			success();
+		}
+		if (withFeedback?.inFailed?.failed) {
+			failed();
+		}
+	}, [withFeedback]);
+
 	return (
 		<button
 			{...props}
@@ -114,8 +161,10 @@ function Button({ type, isLoading, children, variant, ...props }: Props) {
 				props.className
 			} btn`}
 		>
-			{isLoading && <Loading />}
-			{children}
+			<div className={styles.text}>{children}</div>
+			{withFeedback?.isLoading && <Loading />}
+			{withFeedback?.inSuccess?.success && <Success />}
+			{withFeedback?.inFailed?.failed && <Failed />}
 		</button>
 	);
 }

@@ -1,10 +1,9 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-/*
-.btn {
-	@apply text-white font-bold py-2 px-4 rounded flex items-center justify-center min-w-[120px] text-lg;
-} */
+
+.successSvg {
+	filter: invert(1);
+	height: 1rem/* 16px */;
+	width: 1rem/* 16px */;
+}
 
 .btn{
 	--tw-text-opacity: 1;
@@ -16,7 +15,6 @@
 	border-radius: 0.25rem/* 4px */;
 	display: flex;
 	align-items: center;
-	white-space: nowrap;
 	justify-content: center;
 	min-width: 120px;
 	max-width: 120px;
@@ -28,6 +26,12 @@
 	transition-duration: 500ms;
 	position: relative;
 	overflow: hidden;
+	/*Parte pra testar o tamanhno e ver como ficará*/
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.btn:disabled{
+	cursor: not-allowed;
 }
 
 
@@ -52,4 +56,21 @@
 .Secondary:hover{
 	color: rgb(255 255 255 / var(--tw-text-opacity));
   background-color: rgb(246 27 100 / var(--tw-bg-opacity)) !important;
+}
+
+.Secondary:hover{
+		--tw-bg-opacity: 1;
+		background-color: rgb(234 179 8 / var(--tw-bg-opacity))!important;
+}
+
+.Secondary:hover{
+	color: rgb(255 255 255 / var(--tw-text-opacity));
+  background-color: rgb(246 27 100 / var(--tw-bg-opacity)) !important;
+}
+
+.text{
+	width: 95px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
