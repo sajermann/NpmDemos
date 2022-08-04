@@ -1,4 +1,4 @@
-import logoCirtcle from './circle-notch-svgrepo-com.svg';
+import logoCirtcle from './circle-notch.svg';
 import styles from './styles.module.css';
 
 export default function Loading() {
@@ -35,11 +35,9 @@ export default function Loading() {
 		<div className={styles.container}>
 			<img
 				src={logoCirtcle}
-				// weight="bold"
 				style={{ animation: `spin_${ID} 1s linear infinite` }}
 				className={`spin_${ID} ${styles.test}`}
-				// className={`spin ${styles.test}`}
-				alt="batata"
+				alt="loading"
 			/>
 		</div>
 	);

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-// import { Button } from '@sajermann/ui-react/build/Button';
-// import '@sajermann/ui-react/build/index.css';
-import { Button } from '../Components/Button';
+import { Button } from '@sajermann/ui-react/build/Button';
+import '@sajermann/ui-react/build/index.css';
+// import { Button } from '../Components/Button';
+import styles from './styles.module.css';
 import delay from './delay';
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
 		setIsLoading(true);
 		await delay(3000);
 		setIsLoading(false);
-		setFailed(true);
+		setSuccess(true);
 	}
 
 	return (
@@ -46,20 +47,36 @@ export default function Home() {
 				Clique aqui
 			</Button>
 			<Button
-				variant="Secondary"
+				variant="Warning"
 				type="button"
 				onClick={handle}
 				withFeedback={{
 					isLoading,
-					inSuccess: {
-						setSuccess,
-						success,
-					},
-					inFailed: {
-						setFailed,
-						failed,
-					},
 				}}
+			>
+				Clique aqui
+			</Button>
+			<Button
+				variant="Success"
+				type="button"
+				onClick={handle}
+				withFeedback={{
+					isLoading,
+				}}
+				style={{ minWidth: 600 }}
+				// className={styles.batata}
+			>
+				Clique aqui
+			</Button>
+			<Button
+				variant="Transparent"
+				type="button"
+				onClick={handle}
+				withFeedback={{
+					isLoading,
+				}}
+				style={{ minWidth: 600 }}
+				// className={styles.batata}
 			>
 				Clique aqui
 			</Button>

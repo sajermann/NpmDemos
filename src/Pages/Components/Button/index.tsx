@@ -33,13 +33,7 @@ type PropsFeedBack = {
 interface Props extends React.HTMLProps<HTMLButtonElement> {
 	type: 'button' | 'reset' | 'submit';
 	withFeedback?: PropsFeedBack;
-	variant?:
-		| 'Primary'
-		| 'Secondary'
-		| 'Success'
-		| 'Error'
-		| 'Transparent'
-		| 'Warning';
+	variant?: 'Primary' | 'Secondary' | 'Success' | 'Transparent' | 'Warning';
 }
 
 function Button({ type, withFeedback, children, variant, ...props }: Props) {
@@ -47,22 +41,9 @@ function Button({ type, withFeedback, children, variant, ...props }: Props) {
 	const VARIANT = {
 		Primary: styles.Primary,
 		Secondary: styles.Secondary,
-		Success: {
-			normal: 'bg-green-500',
-			hover: 'hover:bg-green-700',
-		},
-		Error: {
-			normal: 'bg-red-500',
-			hover: 'hover:bg-red-700',
-		},
-		Warning: {
-			normal: 'bg-yellow-500',
-			hover: 'hover:bg-yellow-700',
-		},
-		Transparent: {
-			normal: 'bg-transparent-500',
-			hover: 'hover:bg-gray-800',
-		},
+		Success: styles.Success,
+		Warning: styles.Warning,
+		Transparent: styles.Transparent,
 	};
 
 	console.log(variant);
