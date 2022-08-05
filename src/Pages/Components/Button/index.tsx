@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Loading from '../Loading';
 import styles from './styles.module.css';
 import successSvg from './success.svg';
@@ -34,9 +34,19 @@ interface Props extends React.HTMLProps<HTMLButtonElement> {
 	type: 'button' | 'reset' | 'submit';
 	withFeedback?: PropsFeedBack;
 	variant?: 'Primary' | 'Secondary' | 'Success' | 'Transparent' | 'Warning';
+	startIcon?: JSX.Element;
+	endIcon?: JSX.Element;
 }
 
-function Button({ type, withFeedback, children, variant, ...props }: Props) {
+function Button({
+	type,
+	withFeedback,
+	children,
+	variant,
+	startIcon,
+	endIcon,
+	...props
+}: Props) {
 	const { onClick } = props;
 	const VARIANT = {
 		Primary: styles.Primary,
@@ -45,8 +55,19 @@ function Button({ type, withFeedback, children, variant, ...props }: Props) {
 		Warning: styles.Warning,
 		Transparent: styles.Transparent,
 	};
+	const [isEllipsisActive, setIsEllipsisActive] = useState(false);
+	const divRef = useRef<HTMLDivElement>(null);
 
-	console.log(variant);
+	useEffect(() => {
+		const element = divRef.current;
+
+		setIsEllipsisActive(
+			element
+				? element.offsetWidth < element.scrollWidth ||
+						element.offsetHeight < element.scrollHeight
+				: false
+		);
+	}, []);
 
 	function generateGuid(): string {
 		let d = new Date().getTime();
@@ -139,13 +160,41 @@ function Button({ type, withFeedback, children, variant, ...props }: Props) {
 			onClick={createRipple}
 			type={type}
 			className={`${VARIANT[variant || 'Primary']}  ${styles.btn} ${
-				props.className
-			} btn`}
+				!children && styles.onlyIcon
+			} ${props.className} `}
 		>
-			<div className={styles.text}>{children}</div>
-			{withFeedback?.isLoading && <Loading />}
-			{withFeedback?.inSuccess?.success && <Success />}
-			{withFeedback?.inFailed?.failed && <Failed />}
+			<div className={styles.internal}>
+				{startIcon && <div className={styles.containerIcon}>{startIcon}</div>}
+				{children && (
+					<div
+						className={styles.text}
+						ref={divRef}
+						title={(isEllipsisActive && (children as unknown as string)) || ''}
+					>
+						{children}
+					</div>
+				)}
+				{(withFeedback?.isLoading ||
+					withFeedback?.inSuccess?.success ||
+					withFeedback?.inFailed?.failed) && (
+					<div className={styles.containerIcon}>
+						{withFeedback?.isLoading && <Loading />}
+						{!withFeedback?.isLoading && withFeedback?.inSuccess?.success && (
+							<Success />
+						)}
+						{!withFeedback?.isLoading && withFeedback?.inFailed?.failed && (
+							<Failed />
+						)}
+					</div>
+				)}
+
+				{endIcon &&
+					!withFeedback?.isLoading &&
+					!withFeedback?.inSuccess?.success &&
+					!withFeedback?.inFailed?.failed && (
+						<div className={styles.containerIcon}>{endIcon}</div>
+					)}
+			</div>
 		</button>
 	);
 }
