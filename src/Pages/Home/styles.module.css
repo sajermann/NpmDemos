@@ -2,8 +2,10 @@
 	min-width: 600px;
 }
 .container{
+	margin: 20px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 15px;
+	flex-flow: wrap;
 }

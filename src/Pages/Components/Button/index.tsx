@@ -33,7 +33,7 @@ type PropsFeedBack = {
 interface Props extends React.HTMLProps<HTMLButtonElement> {
 	type: 'button' | 'reset' | 'submit';
 	withFeedback?: PropsFeedBack;
-	variant?: 'Primary' | 'Secondary' | 'Success' | 'Transparent' | 'Warning';
+	colorStyle?: 'Primary' | 'Secondary' | 'Success' | 'Transparent' | 'Warning';
 	startIcon?: JSX.Element;
 	endIcon?: JSX.Element;
 }
@@ -42,13 +42,13 @@ function Button({
 	type,
 	withFeedback,
 	children,
-	variant,
+	colorStyle,
 	startIcon,
 	endIcon,
 	...props
 }: Props) {
 	const { onClick } = props;
-	const VARIANT = {
+	const COLOR_STYLE = {
 		Primary: styles.Primary,
 		Secondary: styles.Secondary,
 		Success: styles.Success,
@@ -159,7 +159,7 @@ function Button({
 			{...props}
 			onClick={createRipple}
 			type={type}
-			className={`${VARIANT[variant || 'Primary']}  ${styles.btn} ${
+			className={`${COLOR_STYLE[colorStyle || 'Primary']}  ${styles.btn} ${
 				!children && styles.onlyIcon
 			} ${props.className} `}
 		>

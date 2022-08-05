@@ -19,110 +19,107 @@ export default function Home() {
 	}
 
 	return (
-		<>
-			<div data-testid="Batata">Página inicial</div>
-			<div className={styles.container}>
-				<Button
-					type="button"
-					variant="Primary"
-					onClick={() => {
-						console.log('s');
-					}}
-				>
-					Clique aqui
-				</Button>
-				<Button
-					disabled={isLoading}
-					variant="Secondary"
-					id="bruno"
-					type="button"
-					onClick={handle}
-					withFeedback={{
-						isLoading,
-						inSuccess: {
-							setSuccess,
-							success,
-						},
-						inFailed: {
-							setFailed,
-							failed,
-						},
-					}}
-					startIcon={<Airplane />}
-				>
-					Clique aqui
-				</Button>
-				<Button
-					variant="Warning"
-					type="button"
-					onClick={handle}
-					withFeedback={{
-						isLoading: true,
-						inSuccess: {
-							setSuccess,
-							success,
-						},
-						inFailed: {
-							setFailed,
-							failed,
-						},
-					}}
-					endIcon={<Airplane />}
-				>
-					Clique aqui
-				</Button>
-				<Button
-					variant="Success"
-					type="button"
-					onClick={handle}
-					withFeedback={{
-						isLoading,
-					}}
-					style={{ minWidth: 600 }}
-				>
-					Clique aqui
-				</Button>
+		<div className={styles.container}>
+			<Button
+				type="button"
+				colorStyle="Primary"
+				onClick={() => {
+					console.log('s');
+				}}
+			>
+				Clique aqui
+			</Button>
+			<Button
+				disabled={isLoading}
+				colorStyle="Secondary"
+				id="bruno"
+				type="button"
+				onClick={handle}
+				withFeedback={{
+					isLoading,
+					inSuccess: {
+						setSuccess,
+						success,
+					},
+					inFailed: {
+						setFailed,
+						failed,
+					},
+				}}
+				startIcon={<Airplane />}
+			>
+				Clique aqui
+			</Button>
+			<Button
+				colorStyle="Warning"
+				type="button"
+				onClick={handle}
+				withFeedback={{
+					isLoading: true,
+					inSuccess: {
+						setSuccess,
+						success,
+					},
+					inFailed: {
+						setFailed,
+						failed,
+					},
+				}}
+				endIcon={<Airplane />}
+			>
+				Clique aqui
+			</Button>
+			<Button
+				colorStyle="Success"
+				type="button"
+				onClick={handle}
+				withFeedback={{
+					isLoading,
+				}}
+				style={{ minWidth: 600 }}
+			>
+				Clique aqui
+			</Button>
 
-				<Button
-					variant="Success"
-					type="button"
-					onClick={handle}
-					withFeedback={{
-						isLoading,
-					}}
-					endIcon={<Airplane />}
-				/>
+			<Button
+				colorStyle="Success"
+				type="button"
+				onClick={handle}
+				withFeedback={{
+					isLoading,
+				}}
+				endIcon={<Airplane />}
+			/>
 
-				<Button
-					variant="Warning"
-					type="button"
-					onClick={handle}
-					withFeedback={{
-						isLoading,
-						inSuccess: {
-							setSuccess,
-							success,
-						},
-						inFailed: {
-							setFailed,
-							failed,
-						},
-					}}
-					endIcon={<Airplane />}
-				/>
+			<Button
+				colorStyle="Warning"
+				type="button"
+				onClick={handle}
+				withFeedback={{
+					isLoading,
+					inSuccess: {
+						setSuccess,
+						success,
+					},
+					inFailed: {
+						setFailed,
+						failed,
+					},
+				}}
+				endIcon={<Airplane />}
+			/>
 
-				<Button
-					variant="Transparent"
-					type="button"
-					onClick={handle}
-					withFeedback={{
-						isLoading,
-					}}
-				>
-					<Airplane />
-					Clique aqui
-				</Button>
-			</div>
-		</>
+			<Button
+				colorStyle="Transparent"
+				type="button"
+				onClick={handle}
+				withFeedback={{
+					isLoading,
+				}}
+			>
+				<Airplane />
+				Clique aqui
+			</Button>
+		</div>
 	);
 }
